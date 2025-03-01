@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="profile-start-container">
+  <div class="left-bg"></div>
+  <div class="content-wrapper d-flex flex-column flex-lg-row align-items-center">
+    <div class="image-box">
+      <img src="./assets/landing-image.jpg" alt="Profile Image" class="hexagon-image">
+    </div>
+    <div class="text-box">
+      <div class="login-container">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <h2>Login</h2>
+          <div class="form-group">
+            <input type="text" formControlName="username" class="form-control" placeholder="Username" />
+          </div>
+          <div class="form-group">
+            <input type="password" formControlName="password" class="form-control" placeholder="Password" />
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+          <div class="error-message" *ngIf="errorMessage">Invalid request</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

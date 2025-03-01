@@ -1,0 +1,170 @@
+@use "bootstrap/scss/bootstrap";
+body {
+  font-family: Arial, sans-serif;
+  background: #f8f9fa;
+}
+
+button {
+  transition: all 0.3s ease;
+}
+
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #6c757d;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+
+  .footer-links {
+    display: flex;
+    gap: 15px;
+
+    a {
+      color: #6c757d;
+      text-decoration: none;
+      font-size: 0.875rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    padding: 10px 15px;
+
+    .footer-links {
+      gap: 10px;
+
+      a {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+
+    .footer-links {
+      justify-content: center;
+      gap: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+
+    .footer-links {
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    a {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 280px) {
+    padding: 5px;
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+
+    .footer-links {
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    a {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+
+.header {
+  background: #fff;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e9ecef;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    height: 50px;
+    max-width: 100%;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+
+    a {
+      color: #333;
+      text-decoration: none;
+      font-size: 1rem;
+
+      &:hover {
+        color: #ffbf00;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    padding: 10px 15px;
+
+    .logo {
+      height: 45px;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .nav-links {
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .logo {
+      height: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+
+    .logo {
+      height: 35px;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 280px) {
+    padding: 5px;
+    
+    .logo {
+      height: 30px;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+    }
+  }
+}

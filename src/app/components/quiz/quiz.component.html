@@ -1,0 +1,118 @@
+<app-header></app-header>
+<div class="body">
+  <div class="multi-step-form">
+    <div class="progress">
+      <div class="progress-bar" [style.width.%]="(currentStep / 5) * 100"></div>
+    </div>
+    <p>{{currentStep}} of 5</p>
+    <!-- Form Start -->
+    <form [formGroup]="quizForm">
+      <!-- Step 1 -->
+      <div *ngIf="currentStep === 1" class="quesDiv">
+        <h2>My favorite movie genre is:</h2>
+        <p class="text-muted">(Check all that apply)</p>
+        <div formArrayName="movieGenre" class="form-group mt-4">
+          <label *ngFor="let genre of genres; let i = index" class="option-label">
+            <input type="checkbox" [formControlName]="i" [value]="genre">
+            {{ genre }}
+          </label>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div *ngIf="currentStep === 2" class="quesDiv">
+        <h2>How long have you been an angular developer?</h2>
+        <div class="form-group mt-4" style="grid-template-columns: unset;">
+          <label *ngFor="let level of experienceLevels" class="option-label">
+            <input type="radio" formControlName="angularExperience" [value]="level">
+            {{ level }}
+          </label>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div *ngIf="currentStep === 3" class="quesDiv scrollbar">
+        <h2>What is your favorite movie?</h2>
+        <p class="text-muted">
+          (If you have more than one favorite movie, select <strong>Add Favorite Movie</strong> to enter its details.)
+        </p>
+        <div class="mt-4" formArrayName="favMovieArr">
+          <div *ngFor="let movie of favMovieArr.controls; let i = index" [formGroupName]="i" class="mb-3">
+            <div class="row">
+              <div class="col-md-3">
+                <label class="option-label">Title</label>
+                <input type="text" class="form-control" formControlName="title" placeholder="Enter movie title">
+              </div>
+              <div class="col-md-3">
+                <label class="option-label">Year of Release</label>
+                <input type="text" class="form-control" formControlName="yearOfRealese"
+                  placeholder="Enter year of release">
+              </div>
+              <div class="col-md-2 d-flex align-items-end">
+                <button type="button" class="btn btn-danger" (click)="removeFavMovie(i)" *ngIf="favMovieArr.length > 1">
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button *ngIf="favMovieArr.length < 11" type="button" class="btn btn-outline-primary mt-3" style="color:#333333"
+          (click)="addFavMovie()">
+          Add Favorite Movie
+        </button>
+      </div>
+      <!-- Step 4 -->
+      <div *ngIf="currentStep ===4 " class="quesDiv">
+        <h2>What's your favorite movie snack?</h2>
+        <div class="form-group mt-5">
+          <label *ngFor="let time of movieSnacks" class="option-label">
+            <input type="radio" formControlName="movieSnack" [value]="time">
+            {{ time }}
+          </label>
+        </div>
+      </div>
+      <!-- Step 5 -->
+      <div *ngIf="currentStep === 5" class="quesDiv">
+        <h2>What is jerry Seinfeld's address in Seinfeld?</h2>
+        <p class="text-muted">
+          Address
+        </p>
+        <div class="form-group mt-4" formArrayName="addressArr">
+          <div *ngFor="let movie of addressArr.controls; let i = index" [formGroupName]="i" class="mb-3">
+            <div class="row">
+              <div class="col-md-8">
+                <label class="form-label">Address 1</label>
+                <input type="text" class="form-control" formControlName="address1" placeholder="Address 1">
+              </div>
+              <div class="col-md-8 mt-3">
+                <label class="form-label">Address 2</label>
+                <input type="text" class="form-control" formControlName="address2" placeholder="Address 2">
+              </div>
+              <div class="col-md-5 mt-3">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" formControlName="city" placeholder="City">
+              </div>
+              <div class="col-md-3 mt-3">
+                <label class="form-label">State</label>
+                <input type="text" class="form-control" formControlName="state" placeholder="State">
+              </div>
+              <div class="col-md-3 mt-3">
+                <label class="form-label">Zip Code</label>
+                <input type="text" class="form-control" formControlName="zipCode" placeholder="Zip Code">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="button-group">
+        <button type="button" class="btn text-decoration-none" (click)="exit()" *ngIf="currentStep === 1"
+          style="margin-left:-10px">Exit Assesment</button>
+        <button type="button" class="btn text-decoration-none" (click)="previousStep()" *ngIf="currentStep !== 1"
+          style="margin-left:-10px"> <span class="me-1">&larr;</span>Previous question</button>
+        <button type="button" class="btn btn-primary" (click)="nextStep()" *ngIf="currentStep < 5">Next</button>
+        <button type="button" class="btn btn-success" (click)="onSubmit()" *ngIf="currentStep === 5">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer></app-footer>
