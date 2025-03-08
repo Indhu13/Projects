@@ -15,6 +15,7 @@ import { FooterComponent } from '../footer/footer.component';
 export class QuizComponent implements OnInit {
   quizForm!: FormGroup;
   currentStep = 1;
+  steps = Array(5).fill(0); // 5 segments
   progressPercentage = 0;
 
   genres: string[] = ['Action', 'Western', 'Horror', 'Romantic', 'Drama', 'Comedy', 'Thriller', 'Hart Buddy Comedy',
